@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Rajdip Solanki</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#F9F9F7;--text:#1a1a1a;--muted:#6b6b6b;--accent:#4A6CF7;
+  --border:#e4e4e0;--card:#fff;--nav-bg:rgba(249,249,247,0.92);
+  --tag-bg:#f0f0ee;--tag-color:#555;
+}
+[data-theme="dark"]{
+  --bg:#111110;--text:#e8e8e5;--muted:#888;--accent:#6b8bff;
+  --border:#2a2a28;--card:#1c1c1a;--nav-bg:rgba(17,17,16,0.92);
+  --tag-bg:#252523;--tag-color:#aaa;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;font-size:15px;transition:background .3s,color .3s}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--nav-bg);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:0 5%;transition:background .3s,border-color .3s}
+.nav-inner{max-width:900px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;height:56px}
+.nav-logo{font-weight:600;font-size:15px;letter-spacing:-0.3px;text-decoration:none;color:var(--text)}
+.nav-right{display:flex;align-items:center;gap:24px}
+.nav-links{display:flex;gap:24px;list-style:none}
+.nav-links a{text-decoration:none;color:var(--muted);font-size:13.5px;transition:color .2s}
+.nav-links a:hover{color:var(--text)}
+.toggle-btn{background:none;border:1px solid var(--border);border-radius:20px;padding:5px 12px;cursor:pointer;font-size:13px;color:var(--muted);display:flex;align-items:center;gap:6px;transition:all .2s;white-space:nowrap}
+.toggle-btn:hover{border-color:var(--accent);color:var(--text)}
+
+section{padding:90px 5%;max-width:900px;margin:0 auto}
+section:first-of-type{padding-top:130px}
+
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding-top:56px}
+.hero-tag{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:20px}
+.hero h1{font-size:clamp(2.4rem,5vw,3.6rem);font-weight:600;letter-spacing:-1.5px;line-height:1.1;margin-bottom:20px}
+.hero h1 span{color:var(--accent)}
+.hero-sub{font-size:16px;color:var(--muted);max-width:520px;margin-bottom:36px;line-height:1.7}
+.hero-links{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:9px 18px;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;transition:all .2s}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{opacity:.88}
+.btn-outline{border:1px solid var(--border);color:var(--text);background:transparent}
+.btn-outline:hover{border-color:var(--accent);color:var(--accent)}
+.hero-scroll{margin-top:60px;display:flex;align-items:center;gap:10px;color:var(--muted);font-size:12px;letter-spacing:1px;text-transform:uppercase}
+.scroll-line{width:40px;height:1px;background:var(--border)}
+
+.sec-label{font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:8px}
+.sec-title{font-size:clamp(1.5rem,3vw,2rem);font-weight:600;letter-spacing:-0.8px;margin-bottom:40px}
+.divider{width:100%;height:1px;background:var(--border);margin-bottom:50px}
+
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.about-text p{color:var(--muted);line-height:1.8;font-size:15px}
+.about-stats{display:flex;flex-direction:column;gap:20px}
+.stat{border-left:2px solid var(--accent);padding-left:16px}
+.stat-num{font-size:22px;font-weight:600;letter-spacing:-1px}
+.stat-label{font-size:12px;color:var(--muted);letter-spacing:0.5px}
+
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+.skill-group{border:1px solid var(--border);border-radius:10px;padding:22px;background:var(--card);transition:background .3s,border-color .3s}
+.skill-group h4{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:14px;font-weight:500}
+.skill-tags{display:flex;flex-wrap:wrap;gap:7px}
+.tag{font-size:12px;padding:4px 10px;border-radius:4px;background:var(--bg);border:1px solid var(--border);color:var(--text);transition:background .3s,border-color .3s}
+
+.projects-grid{display:grid;gap:20px}
+.project-card{border:1px solid var(--border);border-radius:12px;padding:28px 30px;background:var(--card);transition:border-color .2s,box-shadow .2s,background .3s;position:relative;overflow:hidden}
+.project-card:hover{border-color:var(--accent);box-shadow:0 4px 28px rgba(74,108,247,.08)}
+.project-num{position:absolute;right:24px;top:22px;font-size:11px;color:var(--border);font-weight:600;letter-spacing:1px}
+.project-card h3{font-size:17px;font-weight:600;letter-spacing:-0.4px;margin-bottom:10px;padding-right:36px}
+.project-card p{color:var(--muted);font-size:14px;line-height:1.75;margin-bottom:18px}
+.project-footer{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:12px}
+.project-stack{display:flex;flex-wrap:wrap;gap:6px}
+.stack-tag{font-size:11px;padding:3px 9px;border-radius:3px;background:var(--tag-bg);color:var(--tag-color);font-weight:500;transition:background .3s}
+.gh-link{display:inline-flex;align-items:center;gap:5px;font-size:12px;color:var(--muted);text-decoration:none;border:1px solid var(--border);border-radius:5px;padding:4px 10px;transition:all .2s;white-space:nowrap}
+.gh-link:hover{color:var(--accent);border-color:var(--accent)}
+.gh-link svg{flex-shrink:0}
+
+.exp-list{display:flex;flex-direction:column;gap:0}
+.exp-item{display:grid;grid-template-columns:160px 1fr;gap:24px;padding:28px 0;border-bottom:1px solid var(--border)}
+.exp-item:first-child{border-top:1px solid var(--border)}
+.exp-meta{padding-top:3px}
+.exp-date{font-size:12px;color:var(--muted);line-height:1.5}
+.exp-company{font-size:12px;font-weight:500;color:var(--text);margin-top:4px}
+.exp-loc{font-size:11px;color:var(--muted)}
+.exp-content h3{font-size:15px;font-weight:600;margin-bottom:10px}
+.exp-content ul{padding-left:0;list-style:none;display:flex;flex-direction:column;gap:7px}
+.exp-content li{font-size:14px;color:var(--muted);line-height:1.7;padding-left:14px;position:relative}
+.exp-content li::before{content:'—';position:absolute;left:0;color:var(--accent);font-size:12px;top:1px}
+
+.edu-card{border:1px solid var(--border);border-radius:10px;padding:26px 28px;background:var(--card);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;transition:background .3s,border-color .3s}
+.edu-card h3{font-size:16px;font-weight:600;letter-spacing:-0.3px}
+.edu-card p{font-size:13px;color:var(--muted);margin-top:4px}
+.edu-badge{font-size:12px;padding:6px 14px;border-radius:20px;background:var(--bg);border:1px solid var(--border);white-space:nowrap;color:var(--muted)}
+
+.contact-inner{text-align:center;padding:60px 20px}
+.contact-inner h2{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:600;letter-spacing:-1px;margin-bottom:12px}
+.contact-inner p{color:var(--muted);margin-bottom:32px;font-size:15px}
+.contact-links{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+
+footer{border-top:1px solid var(--border);padding:24px 5%;text-align:center}
+.footer-inner{max-width:900px;margin:0 auto;font-size:12px;color:var(--muted)}
+
+.fade{opacity:0;transform:translateY(22px);transition:opacity .55s ease,transform .55s ease}
+.fade.visible{opacity:1;transform:none}
+
+@media(max-width:640px){
+  .about-grid{grid-template-columns:1fr}
+  .exp-item{grid-template-columns:1fr}
+  .nav-links{gap:14px}
+  .nav-links li:nth-child(3),.nav-links li:nth-child(4){display:none}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="#">RS</a>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="javascript:void(0)" onclick="navTo('about')">About</a></li>
+        <li><a href="javascript:void(0)" onclick="navTo('projects')">Projects</a></li>
+        <li><a href="javascript:void(0)" onclick="navTo('experience')">Experience</a></li>
+        <li><a href="javascript:void(0)" onclick="navTo('contact')">Contact</a></li>
+      </ul>
+      <button class="toggle-btn" onclick="toggleTheme()" id="themeBtn">☀️ Light</button>
+    </div>
+  </div>
+</nav>
+
+<div style="max-width:900px;margin:0 auto;padding:0 5%">
+<section class="hero" id="home">
+  <p class="hero-tag">AI · ML · Data · Full-Stack</p>
+  <h1>Rajdip<br><span>Solanki</span></h1>
+  <p class="hero-sub">Computer Engineering graduate building AI systems that think, retrieve, and decide — from Adaptive RAG pipelines to production-grade ML models.</p>
+  <div class="hero-links">
+    <a class="btn btn-primary" href="mailto:rajdipsolanki0000@gmail.com">Get in touch</a>
+    <a class="btn btn-outline" href="https://github.com/Rajdip1" target="_blank">GitHub ↗</a>
+    <a class="btn btn-outline" href="https://linkedin.com/in/irajdps" target="_blank">LinkedIn ↗</a>
+  </div>
+  <div class="hero-scroll"><div class="scroll-line"></div>Scroll to explore</div>
+</section>
+</div>
+
+<!-- ABOUT -->
+<section id="about" style="padding-top:40px">
+  <div class="fade">
+    <p class="sec-label">About</p>
+    <h2 class="sec-title">Building at the intersection<br>of AI and engineering</h2>
+  </div>
+  <div class="about-grid fade">
+    <div class="about-text">
+      <p>I'm a Computer Engineering graduate from BVM Engineering College, Anand, passionate about building end-to-end AI applications - from intelligent retrieval systems to fraud detection pipelines. I care about systems that work cleanly, scale gracefully, and actually solve problems.</p>
+      <br/>
+      <p>I've interned as a Mobile App Developer at Tech Elecon and as a React.js Developer at TatvaSoft, giving me solid exposure across the full stack. Currently seeking roles in AI/ML Engineering, Software Development, or Data Analytics.</p>
+    </div>
+    <div class="about-stats">
+      <div class="stat"><div class="stat-num">0.92</div><div class="stat-label">ROC-AUC — Fraud Detection Model</div></div>
+      <div class="stat"><div class="stat-num">500K+</div><div class="stat-label">Retail transactions analysed</div></div>
+      <div class="stat"><div class="stat-num">68%</div><div class="stat-label">Reduction in false positives</div></div>
+      <div class="stat"><div class="stat-num">4</div><div class="stat-label">End-to-end AI/ML projects</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <hr class="divider"/>
+  <div class="fade"><p class="sec-label">Skills</p><h2 class="sec-title">Tech stack</h2></div>
+  <div class="skills-grid fade">
+    <div class="skill-group">
+      <h4>AI / ML</h4>
+      <div class="skill-tags">
+        <span class="tag">LangChain</span><span class="tag">LangGraph</span><span class="tag">RAG</span><span class="tag">Vector DBs</span><span class="tag">Prompt Eng.</span><span class="tag">Agentic AI</span><span class="tag">LLMs</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h4>Languages</h4>
+      <div class="skill-tags"><span class="tag">Python</span><span class="tag">JavaScript</span><span class="tag">SQL</span></div>
+    </div>
+    <div class="skill-group">
+      <h4>Backend & APIs</h4>
+      <div class="skill-tags"><span class="tag">FastAPI</span><span class="tag">Flask</span><span class="tag">Node.js</span><span class="tag">Express.js</span><span class="tag">REST APIs</span></div>
+    </div>
+    <div class="skill-group">
+      <h4>Databases</h4>
+      <div class="skill-tags"><span class="tag">MongoDB</span><span class="tag">PostgreSQL</span><span class="tag">MySQL</span><span class="tag">Qdrant</span></div>
+    </div>
+    <div class="skill-group">
+      <h4>Libraries</h4>
+      <div class="skill-tags"><span class="tag">Pandas</span><span class="tag">NumPy</span><span class="tag">Scikit-Learn</span><span class="tag">TensorFlow</span><span class="tag">SpaCy</span><span class="tag">Statsmodels</span></div>
+    </div>
+    <div class="skill-group">
+      <h4>Cloud & Tools</h4>
+      <div class="skill-tags"><span class="tag">AWS</span><span class="tag">Docker</span><span class="tag">Git</span><span class="tag">MLflow</span><span class="tag">Postman</span><span class="tag">Jira</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <hr class="divider"/>
+  <div class="fade"><p class="sec-label">Projects</p><h2 class="sec-title">Selected work</h2></div>
+  <div class="projects-grid">
+
+    <div class="project-card fade">
+      <span class="project-num">01</span>
+      <h3>Adaptive RAG System</h3>
+      <p>End-to-end retrieval-augmented generation system using LangGraph to intelligently route queries across document knowledge, general knowledge, and real-time web search. Features document chunking, embedding generation, query rewriting, relevance grading, and Qdrant vector search — backed by a FastAPI service with MongoDB chat memory for multi-session conversations.</p>
+      <div class="project-footer">
+        <div class="project-stack"><span class="stack-tag">Python</span><span class="stack-tag">LangChain</span><span class="stack-tag">LangGraph</span><span class="stack-tag">Qdrant</span><span class="stack-tag">Groq</span><span class="stack-tag">MongoDB</span><span class="stack-tag">FastAPI</span></div>
+        <a class="gh-link" href="https://github.com/Rajdip1" target="_blank"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg>GitHub</a>
+      </div>
+    </div>
+
+    <div class="project-card fade">
+      <span class="project-num">02</span>
+      <h3>Fraud Job Detection</h3>
+      <p>ML pipeline for detecting fraudulent job postings using TF-IDF and XGBoost, achieving a ROC-AUC of 0.92. Automated preprocessing, feature engineering, and inference workflows; mitigated class imbalance through threshold optimization, reducing false positives by 68%. Served via a FastAPI backend with a Streamlit interface.</p>
+      <div class="project-footer">
+        <div class="project-stack"><span class="stack-tag">Python</span><span class="stack-tag">XGBoost</span><span class="stack-tag">Pandas</span><span class="stack-tag">Streamlit</span><span class="stack-tag">FastAPI</span></div>
+        <a class="gh-link" href="https://github.com/Rajdip1" target="_blank"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg>GitHub</a>
+      </div>
+    </div>
+
+    <div class="project-card fade">
+      <span class="project-num">03</span>
+      <h3>Retail Sales Analytics & Demand Forecasting</h3>
+      <p>Sales analytics and forecasting pipeline built on 500K+ retail transactions, applying RFM segmentation, EDA, customer segmentation, and feature engineering. Evaluated SARIMA and ETS models using MAE and RMSE metrics to generate actionable insights for retail demand planning and business decision-making.</p>
+      <div class="project-footer">
+        <div class="project-stack"><span class="stack-tag">Python</span><span class="stack-tag">Pandas</span><span class="stack-tag">Statsmodels</span><span class="stack-tag">SARIMA</span><span class="stack-tag">ETS</span></div>
+        <a class="gh-link" href="https://github.com/Rajdip1" target="_blank"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg>GitHub</a>
+      </div>
+    </div>
+
+    <div class="project-card fade">
+      <span class="project-num">04</span>
+      <h3>AI Interview Preparation Platform</h3>
+      <p>Full-stack platform that analyses resumes against job descriptions using Google Gemini AI to generate personalized interview questions, skill-gap insights, and preparation roadmaps. Features Zod-based schema validation for job-match scoring, JWT-authenticated REST APIs, and MongoDB-backed report management.</p>
+      <div class="project-footer">
+        <div class="project-stack"><span class="stack-tag">React</span><span class="stack-tag">Node.js</span><span class="stack-tag">Express.js</span><span class="stack-tag">MongoDB</span><span class="stack-tag">Gemini AI</span><span class="stack-tag">JWT</span></div>
+        <a class="gh-link" href="https://github.com/Rajdip1" target="_blank"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg>GitHub</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <hr class="divider"/>
+  <div class="fade"><p class="sec-label">Experience</p><h2 class="sec-title">Where I've worked</h2></div>
+  <div class="exp-list">
+    <div class="exp-item fade">
+      <div class="exp-meta">
+        <div class="exp-date">Jan 2025 – Apr 2025</div>
+        <div class="exp-company">Tech Elecon Pvt. Ltd</div>
+        <div class="exp-loc">Anand, Gujarat</div>
+      </div>
+      <div class="exp-content">
+        <h3>Mobile App Developer Intern</h3>
+        <ul>
+          <li>Built HRMS application modules for employee, leave, attendance, and project tracking using Flutter.</li>
+          <li>Implemented role-based authentication, user management, and real-time Firebase-backed data operations.</li>
+          <li>Built location-based attendance using geofencing and QR verification, improving tracking reliability.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="exp-item fade">
+      <div class="exp-meta">
+        <div class="exp-date">May 2023 – Jun 2023</div>
+        <div class="exp-company">TatvaSoft</div>
+        <div class="exp-loc">Ahmedabad, Gujarat</div>
+      </div>
+      <div class="exp-content">
+        <h3>React JS Intern</h3>
+        <ul>
+          <li>Built secure authentication workflows and responsive UIs by translating requirements into React.js components.</li>
+          <li>Implemented shopping cart and product filtering features for an e-commerce application.</li>
+          <li>Integrated and validated REST APIs ensuring reliable data flow between frontend and backend services.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <hr class="divider"/>
+  <div class="fade"><p class="sec-label">Education</p><h2 class="sec-title">Academic background</h2></div>
+  <div class="edu-card fade">
+    <div>
+      <h3>Birla Vishwakarma Mahavidyalaya Engineering College</h3>
+      <p>B.Tech in Computer Engineering · Anand, Gujarat</p>
+    </div>
+    <span class="edu-badge">2020 – 2025</span>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <hr class="divider"/>
+  <div class="contact-inner fade">
+    <h2>Let's work together</h2>
+    <p>Open to AI/ML Engineering, Software Development, and Data Analytics roles.</p>
+    <div class="contact-links">
+      <a class="btn btn-primary" href="mailto:rajdipsolanki0000@gmail.com">rajdipsolanki0000@gmail.com</a>
+      <a class="btn btn-outline" href="https://linkedin.com/in/irajdps" target="_blank">LinkedIn ↗</a>
+      <a class="btn btn-outline" href="https://github.com/Rajdip1" target="_blank">GitHub ↗</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">© 2025 Rajdip Solanki · Built with care</div>
+</footer>
+
+<script>
+// Nav scroll
+function navTo(id){
+  const el = document.getElementById(id);
+  if(!el) return;
+  const offset = 64;
+  const top = el.getBoundingClientRect().top + window.scrollY - offset;
+  window.scrollTo({top, behavior:'smooth'});
+}
+
+// Dark mode
+const btn = document.getElementById('themeBtn');
+const html = document.documentElement;
+const saved = localStorage.getItem('theme') || 'light';
+setTheme(saved);
+
+function setTheme(t){
+  html.setAttribute('data-theme', t);
+  btn.textContent = t === 'dark' ? '☀️ Light' : '🌙 Dark';
+  try{ localStorage.setItem('theme', t); }catch(e){}
+}
+function toggleTheme(){
+  setTheme(html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+}
+
+// Fade in
+const obs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); });
+},{threshold:0.1});
+document.querySelectorAll('.fade').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
