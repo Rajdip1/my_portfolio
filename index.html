@@ -96,6 +96,15 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--nav-bg);bor
 .gh-link{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;color:var(--text);text-decoration:none;border:2px solid var(--border);padding:4px 10px;transition:all .2s;white-space:nowrap;background:var(--bg);font-weight:700}
 .gh-link:hover{background:var(--accent);transform:translate(-2px,-2px);box-shadow:3px 3px 0 var(--border)}
 
+/* ── BLOG ── */
+.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.blog-card{border:2px solid var(--border);padding:22px;background:var(--card);box-shadow:4px 4px 0 var(--border);display:flex;flex-direction:column;gap:10px;transition:transform .2s,box-shadow .2s}
+.blog-card:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--border)}
+.blog-card h3{font-size:15px;font-weight:800;letter-spacing:-.02em;line-height:1.3}
+.blog-card p{color:var(--muted);font-size:13.5px;line-height:1.75;font-weight:600}
+.blog-link{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;color:var(--text);text-decoration:none;border:2px solid var(--border);padding:7px 10px;background:var(--bg);font-weight:700;transition:all .2s;align-self:flex-start}
+.blog-link:hover{background:var(--accent-2);transform:translate(-2px,-2px);box-shadow:3px 3px 0 var(--border)}
+
 /* ── EXPERIENCE ── */
 .exp-item{display:grid;grid-template-columns:150px 1fr;gap:24px;padding:28px 0;border-bottom:2px solid var(--border)}
 .exp-item:first-child{border-top:2px solid var(--border)}
@@ -147,6 +156,7 @@ footer p{max-width:960px;margin:0 auto;font-size:12px;color:var(--muted);font-we
   .skills-grid{grid-template-columns:1fr 1fr}
 
   .projects-grid{grid-template-columns:1fr}
+  .blog-grid{grid-template-columns:1fr}
 
   .exp-item{grid-template-columns:1fr;gap:10px}
   .exp-meta{display:flex;gap:12px;align-items:baseline;flex-wrap:wrap}
@@ -161,6 +171,7 @@ footer p{max-width:960px;margin:0 auto;font-size:12px;color:var(--muted);font-we
   .about-stats{grid-template-columns:1fr 1fr}
 
   .skills-grid{grid-template-columns:1fr}
+  .blog-grid{grid-template-columns:1fr}
 
   .edu-card{flex-direction:column;align-items:flex-start}
 
@@ -190,6 +201,7 @@ footer p{max-width:960px;margin:0 auto;font-size:12px;color:var(--muted);font-we
         <li><a href="javascript:void(0)" onclick="navTo('about')">About</a></li>
         <li><a href="javascript:void(0)" onclick="navTo('skills');closeMenu()">Tech Stack</a></li>
         <li><a href="javascript:void(0)" onclick="navTo('projects')">Projects</a></li>
+        <li><a href="javascript:void(0)" onclick="navTo('blog')">Blog</a></li>
         <li><a href="javascript:void(0)" onclick="navTo('experience')">Experience</a></li>
         <li><a href="javascript:void(0)" onclick="navTo('contact')">Contact</a></li>
       </ul>
@@ -208,6 +220,7 @@ footer p{max-width:960px;margin:0 auto;font-size:12px;color:var(--muted);font-we
     <li><a href="javascript:void(0)" onclick="navTo('about');closeMenu()">About</a></li>
     <li><a href="javascript:void(0)" onclick="navTo('skills');closeMenu()">Tech Stack</a></li>
     <li><a href="javascript:void(0)" onclick="navTo('projects');closeMenu()">Projects</a></li>
+    <li><a href="javascript:void(0)" onclick="navTo('blog');closeMenu()">Blog</a></li>
     <li><a href="javascript:void(0)" onclick="navTo('experience');closeMenu()">Experience</a></li>
     <li><a href="javascript:void(0)" onclick="navTo('contact');closeMenu()">Contact</a></li>
     <li><a class="nav-download" href="https://drive.google.com/file/d/1V119xzgtUDntk6cne4C90vFnmCRyUDPB/view?usp=sharing" target="_blank" rel="noopener noreferrer" style="display:inline-flex;margin-top:6px">Resume/CV</a></li>
@@ -307,6 +320,30 @@ footer p{max-width:960px;margin:0 auto;font-size:12px;color:var(--muted);font-we
       </div>
     </div>
 
+  </div>
+</section>
+
+<!-- BLOG -->
+<section class="sec" id="blog" style="padding-top:0">
+  <div class="divider"></div>
+  <div class="fade"><p class="sec-label">Blog</p><h2 class="sec-title">My writing & insights</h2></div>
+  <div class="blog-grid fade">
+    <article class="blog-card">
+      <h3>ML Experiment</h3>
+      <p>Why Pregnancy Features Cannot Predict Baby Gender: A Machine Learning Experiment
+The Age-Old Question Meets Modern AI</p>
+      <a class="blog-link" href="https://irajdps.medium.com/why-pregnancy-features-cannot-predict-baby-gender-a-machine-learning-experiment-f042cb79d4ac" target="_blank" rel="noopener noreferrer">Read article →</a>
+    </article>
+    <!-- <article class="blog-card">
+      <h3>ML Product Thinking</h3>
+      <p>Thoughts on turning machine learning ideas into reliable, user-focused products with measurable impact.</p>
+      <a class="blog-link" href="https://dev.to" target="_blank" rel="noopener noreferrer">Read article →</a>
+    </article>
+    <article class="blog-card">
+      <h3>Building Full-Stack AI Apps</h3>
+      <p>A breakdown of the workflow behind shipping AI-powered features from prototype to production-ready systems.</p>
+      <a class="blog-link" href="https://hashnode.com" target="_blank" rel="noopener noreferrer">Read article →</a>
+    </article> -->
   </div>
 </section>
 
