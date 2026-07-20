@@ -3,7 +3,18 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Rajdip Solanki</title>
+<title>Rajdip Solanki — AI/ML Engineer &amp; Full-Stack Developer</title>
+<meta name="description" content="Rajdip Solanki is a Computer Engineering graduate building AI systems — Adaptive RAG pipelines, fraud detection models, and full-stack ML products."/>
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="Rajdip Solanki — AI/ML Engineer & Full-Stack Developer"/>
+<meta property="og:description" content="Computer Engineering graduate building AI systems that think, retrieve, and decide — from Adaptive RAG pipelines to production-grade ML models."/>
+<meta property="og:image" content="https://irajdps.dev/og-image.png"/>
+<meta property="og:url" content="https://irajdps.dev/"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Rajdip Solanki — AI/ML Engineer & Full-Stack Developer"/>
+<meta name="twitter:description" content="Computer Engineering graduate building AI systems that think, retrieve, and decide."/>
+<meta name="twitter:image" content="https://irajdps.dev/og-image.png"/>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23171717'/%3E%3Ctext x='50' y='68' font-family='Arial Black,Arial,sans-serif' font-size='54' font-weight='900' fill='%23ff5a36' text-anchor='middle'%3ERS%3C/text%3E%3C/svg%3E"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -97,7 +108,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--nav-bg);bor
 .gh-link:hover{background:var(--accent);transform:translate(-2px,-2px);box-shadow:3px 3px 0 var(--border)}
 
 /* ── BLOG ── */
-.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.blog-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.blog-grid .blog-card{max-width:400px}
 .blog-card{border:2px solid var(--border);padding:22px;background:var(--card);box-shadow:4px 4px 0 var(--border);display:flex;flex-direction:column;gap:10px;transition:transform .2s,box-shadow .2s}
 .blog-card:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--border)}
 .blog-card h3{font-size:15px;font-weight:800;letter-spacing:-.02em;line-height:1.3}
@@ -247,9 +259,9 @@ footer p{max-width:960px;margin:0 auto;font-size:12px;color:var(--muted);font-we
   <div class="fade"><p class="sec-label">About</p><h2 class="sec-title">Building at the intersection<br>of AI and engineering</h2></div>
   <div class="about-grid fade">
     <div class="about-text">
-      <p>I'm a Computer Engineering graduate from BVM Engineering College, Anand, passionate about building end-to-end AI applications — from intelligent retrieval systems to fraud detection pipelines. I care about systems that work cleanly, scale gracefully, and actually solve problems.</p>
+      <p>I'm a Computer Engineering graduate from BVM Engineering College, Anand. My focus is turning AI concepts into shipped, measurable products — I care about systems that work cleanly, scale gracefully, and actually solve problems, not just demo well.</p>
       <br/>
-      <p>I've interned as a Mobile App Developer at Tech Elecon and as a React.js Developer at TatvaSoft, giving me solid exposure across the full stack. Currently seeking roles in AI/ML Engineering, Software Development, or Data Analytics.</p>
+      <p>Along the way I've interned as a Mobile App Developer at Tech Elecon and a React.js Developer at TatvaSoft, giving me hands-on exposure across the full stack — from geofenced attendance systems to production REST APIs. Currently seeking roles in AI/ML Engineering, Software Development, or Data Analytics.</p>
     </div>
     <div class="about-stats">
       <div class="stat"><div class="stat-num">0.92</div><div class="stat-label">ROC-AUC — Fraud Detection</div></div>
@@ -334,16 +346,6 @@ footer p{max-width:960px;margin:0 auto;font-size:12px;color:var(--muted);font-we
 The Age-Old Question Meets Modern AI</p>
       <a class="blog-link" href="https://irajdps.medium.com/why-pregnancy-features-cannot-predict-baby-gender-a-machine-learning-experiment-f042cb79d4ac" target="_blank" rel="noopener noreferrer">Read article →</a>
     </article>
-    <!-- <article class="blog-card">
-      <h3>ML Product Thinking</h3>
-      <p>Thoughts on turning machine learning ideas into reliable, user-focused products with measurable impact.</p>
-      <a class="blog-link" href="https://dev.to" target="_blank" rel="noopener noreferrer">Read article →</a>
-    </article>
-    <article class="blog-card">
-      <h3>Building Full-Stack AI Apps</h3>
-      <p>A breakdown of the workflow behind shipping AI-powered features from prototype to production-ready systems.</p>
-      <a class="blog-link" href="https://hashnode.com" target="_blank" rel="noopener noreferrer">Read article →</a>
-    </article> -->
   </div>
 </section>
 
@@ -448,7 +450,9 @@ function setTheme(t){
   try{localStorage.setItem('theme',t)}catch(e){}
 }
 function toggleTheme(){setTheme(html.getAttribute('data-theme')==='dark'?'light':'dark')}
-setTheme(localStorage.getItem('theme')||'light');
+const savedTheme=(()=>{try{return localStorage.getItem('theme')}catch(e){return null}})();
+const prefersDark=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches;
+setTheme(savedTheme||(prefersDark?'dark':'light'));
 
 // Fade in
 const obs=new IntersectionObserver(entries=>{
