@@ -29,8 +29,12 @@
   --tag-bg:#2f2f2f;--tag-color:#f5f2e8;
 }
 html{scroll-behavior:smooth}
-body{font-family:'Inter',Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;font-size:15px;transition:background .3s,color .3s}
+body{font-family:'Inter',Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;font-size:15px;transition:background .35s ease,color .35s ease,opacity .6s ease}
 body::before{content:"";position:fixed;inset:0;pointer-events:none;background-image:linear-gradient(90deg,transparent 0,transparent 98%,rgba(23,23,23,.08) 98%,rgba(23,23,23,.08) 100%),linear-gradient(0deg,transparent 0,transparent 98%,rgba(23,23,23,.08) 98%,rgba(23,23,23,.08) 100%);background-size:22px 22px;opacity:.35;z-index:-1}
+a,button{transition:all .28s cubic-bezier(.22,1,.36,1)}
+img,svg{transition:transform .28s ease,opacity .28s ease}
+body:not(.loaded){opacity:0}
+body.loaded{opacity:1}
 
 /* ── NAV ── */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--nav-bg);border-bottom:3px solid var(--border);transition:background .3s}
@@ -154,8 +158,11 @@ footer{border-top:3px solid var(--border);padding:22px 20px;text-align:center}
 footer p{max-width:960px;margin:0 auto;font-size:12px;color:var(--muted);font-weight:700}
 
 /* ── FADE ── */
-.fade{opacity:0;transform:translateY(20px);transition:opacity .5s ease,transform .5s ease}
-.fade.visible{opacity:1;transform:none}
+.fade{opacity:0;transform:translateY(24px) scale(.98);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1),box-shadow .28s ease;will-change:transform,opacity}
+.fade.visible{opacity:1;transform:translateY(0) scale(1)}
+.fade:nth-child(2n){transition-delay:80ms}
+.fade:nth-child(3n){transition-delay:140ms}
+.fade:nth-child(4n){transition-delay:200ms}
 
 /* ══════════════════════════
    RESPONSIVE BREAKPOINTS
@@ -483,11 +490,26 @@ const savedTheme=(()=>{try{return localStorage.getItem('theme')}catch(e){return 
 const prefersDark=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches;
 setTheme(savedTheme||(prefersDark?'dark':'light'));
 
-// Fade in
-const obs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
-},{threshold:0.08});
-document.querySelectorAll('.fade').forEach(el=>obs.observe(el));
+document.addEventListener('DOMContentLoaded',()=>{
+  document.body.classList.add('loaded');
+
+  const revealEls=document.querySelectorAll('.fade');
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        const delay=Number(entry.target.dataset.delay||0);
+        entry.target.style.transitionDelay=`${delay}ms`;
+        entry.target.classList.add('visible');
+        obs.unobserve(entry.target);
+      }
+    });
+  },{threshold:0.12,rootMargin:'0px 0px -40px 0px'});
+
+  revealEls.forEach((el,index)=>{
+    el.dataset.delay=index*60;
+    obs.observe(el);
+  });
+});
 
 const projectTrack=document.querySelector('.projects-grid');
 const prevBtn=document.querySelector('.carousel-prev');
