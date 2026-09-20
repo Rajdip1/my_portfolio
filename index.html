@@ -90,6 +90,15 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--nav-bg);bor
 .stat-num{font-family:'Arial Black',Arial,sans-serif;font-size:20px;font-weight:900;letter-spacing:-.03em}
 .stat-label{font-size:11.5px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-top:4px}
 
+/* ── AI FOCUS STRIP ── */
+.focus-strip{display:grid;grid-template-columns:1.25fr 1fr;gap:14px;margin-top:-18px;margin-bottom:18px}
+.focus-card{border:2px solid var(--border);padding:15px 18px;background:var(--card);box-shadow:4px 4px 0 var(--border)}
+.focus-card.primary{background:var(--accent)}
+.focus-kicker{font-size:10px;letter-spacing:.18em;text-transform:uppercase;font-weight:900;margin-bottom:5px}
+.focus-value{font-size:13px;font-weight:800;line-height:1.5}
+.focus-value span{font-family:monospace}
+.focus-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#19a463;border:2px solid var(--border);margin-right:7px;vertical-align:middle}
+
 /* ── SKILLS ── */
 .skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .skill-group{border:2px solid var(--border);padding:18px 20px;background:var(--card);box-shadow:4px 4px 0 var(--border);transition:transform .2s,box-shadow .2s}
@@ -157,12 +166,25 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--nav-bg);bor
 footer{border-top:3px solid var(--border);padding:22px 20px;text-align:center}
 footer p{max-width:960px;margin:0 auto;font-size:12px;color:var(--muted);font-weight:700}
 
+/* ── ARCHITECTURE ── */
+.architecture{border:2px solid var(--border);background:var(--card);box-shadow:6px 6px 0 var(--border);padding:22px}
+.arch-intro{color:var(--muted);font-size:13.5px;line-height:1.75;font-weight:600;max-width:720px;margin-bottom:20px}
+.arch-flow{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;align-items:stretch}
+.arch-node{border:2px solid var(--border);background:var(--bg);padding:13px 10px;text-align:center;min-height:92px;display:flex;flex-direction:column;justify-content:center;box-shadow:3px 3px 0 var(--border)}
+.arch-node strong{font-size:11px;text-transform:uppercase;letter-spacing:.08em}
+.arch-node span{font-size:10.5px;color:var(--muted);font-weight:700;margin-top:5px;line-height:1.4}
+.arch-arrow{display:none}
+.arch-note{margin-top:15px;font-size:11px;color:var(--muted);font-weight:800;text-transform:uppercase;letter-spacing:.08em}
+
 /* ── FADE ── */
 .fade{opacity:0;transform:translateY(24px) scale(.98);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1),box-shadow .28s ease;will-change:transform,opacity}
 .fade.visible{opacity:1;transform:translateY(0) scale(1)}
 .fade:nth-child(2n){transition-delay:80ms}
 .fade:nth-child(3n){transition-delay:140ms}
 .fade:nth-child(4n){transition-delay:200ms}
+
+/* ── CONTACT STATUS ── */
+.contact-status{display:inline-flex;align-items:center;border:2px solid var(--border);padding:6px 10px;background:var(--card);box-shadow:2px 2px 0 var(--border);font-size:10px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;margin-bottom:18px}
 
 /* ══════════════════════════
    RESPONSIVE BREAKPOINTS
@@ -228,6 +250,7 @@ footer p{max-width:960px;margin:0 auto;font-size:12px;color:var(--muted);font-we
         <li><a href="javascript:void(0)" onclick="navTo('about')">About</a></li>
         <li><a href="javascript:void(0)" onclick="navTo('skills');closeMenu()">Tech Stack</a></li>
         <li><a href="javascript:void(0)" onclick="navTo('projects')">Projects</a></li>
+        <li><a href="javascript:void(0)" onclick="navTo('architecture')">How I Build</a></li>
         <li><a href="javascript:void(0)" onclick="navTo('blog')">Blog</a></li>
         <li><a href="javascript:void(0)" onclick="navTo('experience')">Experience</a></li>
         <li><a href="javascript:void(0)" onclick="navTo('contact')">Contact</a></li>
@@ -247,6 +270,7 @@ footer p{max-width:960px;margin:0 auto;font-size:12px;color:var(--muted);font-we
     <li><a href="javascript:void(0)" onclick="navTo('about');closeMenu()">About</a></li>
     <li><a href="javascript:void(0)" onclick="navTo('skills');closeMenu()">Tech Stack</a></li>
     <li><a href="javascript:void(0)" onclick="navTo('projects');closeMenu()">Projects</a></li>
+    <li><a href="javascript:void(0)" onclick="navTo('architecture');closeMenu()">How I Build</a></li>
     <li><a href="javascript:void(0)" onclick="navTo('blog');closeMenu()">Blog</a></li>
     <li><a href="javascript:void(0)" onclick="navTo('experience');closeMenu()">Experience</a></li>
     <li><a href="javascript:void(0)" onclick="navTo('contact');closeMenu()">Contact</a></li>
@@ -257,16 +281,29 @@ footer p{max-width:960px;margin:0 auto;font-size:12px;color:var(--muted);font-we
 <!-- HERO -->
 <div class="wrap">
 <section class="hero" id="home">
-  <p class="hero-tag">AI · ML · Full-Stack</p>
+  <p class="hero-tag">AI · ML · AI AGENTS · RAG</p>
   <h1>Rajdip<br><span>Solanki</span></h1>
-  <p class="hero-sub">Computer Engineering graduate building AI systems that think, retrieve, and decide — from Adaptive RAG pipelines to production-grade ML models.</p>
+  <p class="hero-sub">I build AI Agents, RAG systems, and LLM-powered applications that retrieve knowledge, reason over context, use tools, and turn AI capabilities into practical products.</p>
   <div class="hero-links">
+    <a class="btn btn-primary" href="#projects" onclick="navTo('projects')">View projects ↓</a>
     <a class="btn btn-primary" href="mailto:rajdipsolanki0000@gmail.com">Get in touch</a>
     <a class="btn btn-outline" href="https://github.com/Rajdip1" target="_blank">GitHub ↗</a>
     <a class="btn btn-outline" href="https://linkedin.com/in/irajdps" target="_blank">LinkedIn ↗</a>
   </div>
   <div class="hero-scroll"><div class="scroll-line"></div>Scroll to explore</div>
 </section>
+
+<div class="focus-strip">
+  <div class="focus-card primary">
+    <div class="focus-kicker">Current focus</div>
+    <div class="focus-value">AI Agents · Generative AI · RAG · LLM Applications</div>
+  </div>
+  <div class="focus-card">
+    <div class="focus-kicker"><span class="focus-dot"></span>Open to</div>
+    <div class="focus-value">AI/ML Engineer · AI Engineer · GenAI · AI Agent Engineering</div>
+  </div>
+</div>
+
 </div>
 
 <!-- ABOUT -->
@@ -274,16 +311,16 @@ footer p{max-width:960px;margin:0 auto;font-size:12px;color:var(--muted);font-we
   <div class="fade"><p class="sec-label">About</p><h2 class="sec-title">Building at the intersection<br>of AI and engineering</h2></div>
   <div class="about-grid fade">
     <div class="about-text">
-      <p>I'm a Computer Engineering graduate from BVM Engineering College, Anand. My focus is turning AI concepts into shipped, measurable products — I care about systems that work cleanly, scale gracefully, and actually solve problems, not just demo well.</p>
+      <p>I'm an AI/ML Engineer focused on building practical AI systems. My work spans AI Agents, Generative AI, RAG, LLM applications, and machine learning.</p>
       <br/>
-      <p>Along the way I've interned as a Mobile App Developer at Tech Elecon and a React.js Developer at TatvaSoft, giving me hands-on exposure across the full stack — from geofenced attendance systems to production REST APIs. Currently seeking roles in AI/ML Engineering, Software Development, or Data Analytics.</p>
+      <p>I use Python, LangGraph, LangChain, FastAPI, vector databases, and modern LLM APIs to build systems that retrieve knowledge, reason over context, use tools, and deliver useful outcomes. I enjoy taking AI ideas beyond prototypes and turning them into reliable, production-oriented applications.</p>
     </div>
     <div class="about-stats">
+      <div class="stat"><div class="stat-num">1+ YR</div><div class="stat-label">AI/ML Engineering</div></div>
       <div class="stat"><div class="stat-num">0.92</div><div class="stat-label">ROC-AUC — Fraud Detection</div></div>
       <div class="stat"><div class="stat-num">500K+</div><div class="stat-label">Retail transactions analysed</div></div>
       <div class="stat"><div class="stat-num">68%</div><div class="stat-label">Reduction in false positives</div></div>
-      <div class="stat"><div class="stat-num">4</div><div class="stat-label">AI/ML projects</div></div>
-      <div class="stat"><div class="stat-num">3</div><div class="stat-label">Full Stack projects</div></div>
+      <div class="stat"><div class="stat-num">4+</div><div class="stat-label">AI/ML projects</div></div>
     </div>
   </div>
 </section>
@@ -298,9 +335,36 @@ footer p{max-width:960px;margin:0 auto;font-size:12px;color:var(--muted);font-we
     <div class="skill-group"><h4>Backend & APIs</h4><div class="skill-tags"><span class="tag">FastAPI</span><span class="tag">Flask</span><span class="tag">Node.js</span><span class="tag">Express.js</span><span class="tag">REST APIs</span></div></div>
     <div class="skill-group"><h4>Databases</h4><div class="skill-tags"><span class="tag">MongoDB</span><span class="tag">PostgreSQL</span><span class="tag">MySQL</span><span class="tag">Qdrant</span></div></div>
     <div class="skill-group"><h4>Libraries</h4><div class="skill-tags"><span class="tag">Pandas</span><span class="tag">NumPy</span><span class="tag">Scikit-Learn</span><span class="tag">TensorFlow</span><span class="tag">SpaCy</span><span class="tag">Statsmodels</span></div></div>
-    <div class="skill-group"><h4>Core Concepts</h4><div class="skill-tags"><span class="tag">OOP</span><span class="tag">Data Structures</span><span class="tag">Algorithms</span><span class="tag">SDLC</span><span class="tag">Agile</span><span class="tag">Microservices</span></div></div>
+    <div class="skill-group"><h4>Core Concepts</h4><div class="skill-tags"><span class="tag">OOP</span><span class="tag">Data Structures</span><span class="tag">Algorithms</span><span class="tag">SDLC</span><span class="tag">Agile</span></div></div>
     <div class="skill-group"><h4>Cloud & Tools</h4><div class="skill-tags"><span class="tag">AWS</span><span class="tag">Docker</span><span class="tag">Git</span><span class="tag">MLflow</span><span class="tag">Postman</span><span class="tag">Jira</span></div></div>
-    <div class="skill-group"><h4>AI Tools & Automation</h4><div class="skill-tags"><span class="tag">n8n</span><span class="tag">Zapier</span><span class="tag">ChatGPT</span><span class="tag">Claude</span></div></div>
+    <div class="skill-group"><h4>AI Tools</h4>
+      <div class="skill-tags">
+        <!-- <span class="tag"></span>
+        <span class="tag"></span> -->
+        <span class="tag">Codex</span>
+        <span class="tag">Claude</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AI SYSTEMS ARCHITECTURE -->
+<section class="sec" id="architecture" style="padding-top:0">
+  <div class="divider"></div>
+  <div class="fade">
+    <p class="sec-label">How I build</p>
+    <h2 class="sec-title">From user query to useful action</h2>
+  </div>
+  <div class="architecture fade">
+    <p class="arch-intro">My AI projects combine retrieval, agentic workflows, LLM reasoning, and external tools instead of treating the model as a standalone chatbot.</p>
+    <div class="arch-flow">
+      <div class="arch-node"><strong>User Query</strong><span>Question, task, or business need</span></div>
+      <div class="arch-node"><strong>AI Agent</strong><span>Routes the request and decides what to do</span></div>
+      <div class="arch-node"><strong>RAG / Tools</strong><span>Knowledge, APIs, databases, or search</span></div>
+      <div class="arch-node"><strong>LLM</strong><span>Reasons over retrieved context</span></div>
+      <div class="arch-node"><strong>Action / Answer</strong><span>Useful response or next step</span></div>
+    </div>
+    <div class="arch-note">Retrieve → Reason → Act → Evaluate</div>
   </div>
 </section>
 
@@ -462,12 +526,13 @@ e-commerce application</li>
 <section class="sec" id="contact" style="padding-top:0">
   <div class="divider"></div>
   <div class="contact-inner fade">
-    <h2>Let's work together</h2>
-    <p>Open to AI/ML Engineering, Software Development, and Data Analytics roles.</p>
+    <div class="contact-status"><span class="focus-dot"></span>Open to AI/ML & AI Agent Engineering roles</div>
+    <h2>Let's build useful AI Systems</h2>
+    <p>Interested in AI/ML Engineering, Generative AI, AI Agent, RAG, and LLM application opportunities.</p>
     <div class="contact-links">
       <a class="btn btn-primary" href="mailto:rajdipsolanki0000@gmail.com">Mail</a>
       <a class="btn btn-outline" href="https://linkedin.com/in/irajdps" target="_blank">LinkedIn ↗</a>
-      <a class="btn btn-outline" href="https://github.com/Rajdip1" target="_blank">GitHub ↗</a>
+      <a class="btn btn-outline" href="https://github.com/Rajdip1" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
     </div>
   </div>
 </section>
